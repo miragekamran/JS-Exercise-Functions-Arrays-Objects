@@ -149,11 +149,17 @@ function getLastCarInfo(myCar) {
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(aCar, anId) {
-  var carInfo = aCar[anId];
-  return `This is ${carInfo.car_model} ${carInfo.car_model}`;
-  // var carId = carArr[index];
-  // return `This is ${carId.car_model} ${carId.car_model}`;
+function getCarInfoById(carArr, carId) {
+  for (var i = 0; i < carArr.length; i++) {
+    if (carArr[i].id === carId) {
+      return `This is a ${carArr[i].car_make} ${carArr[i].car_model}`;
+    }
+  }
+  // var carInfo = carArr[index];
+  // var carInfo = aCar[anId];
+  // return `This is ${carInfo.car_model} ${carInfo.car_model}`;
+  // // var carId = carArr[index];
+  // // return `This is ${carId.car_model} ${carId.car_model}`;
 }
 
 /**
@@ -164,8 +170,16 @@ function getCarInfoById(aCar, anId) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
-function sortCarInventory(/* code here */) {
-  /* code here */
+function sortCarInventory(model) {
+
+  // car.sort(function (model) {
+  //   return model.car_model
+  // });
+
+
+  var car = model.sort();
+  console.log(car);
+  // return car.car_model;
 }
 
 /**
@@ -177,8 +191,12 @@ function sortCarInventory(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
-  /* code here */
+function getModelYears(car) {
+  const model = car.values();
+
+  for (const value of model.car_year) {
+    console.log(value);
+  }
 }
 
 /**
@@ -193,8 +211,9 @@ function getModelYears(/* code here */) {
  * with a `car_year` which is at most the given desired max year,
  * in the same order as they appear in the original inventory.
 */
-function getOlderCars(/* code here */) {
-  /* code here */
+function getOlderCars(carArr, older) {
+  const myOldCar = carArr[older.car_year];
+  return myOldCar;
 }
 
 /**
