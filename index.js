@@ -41,21 +41,12 @@ function exampleFunction(num1, num2) {
 
 
 function makePersonObject(id, name, email) {
-  const intro = {
+  return {
     id: id,
     name: name,
     email: email
   }
-  
-  return intro;
 }
-  
-
-// const makePersonObject = {
-// 	id: 7,
-// 	name: "Mirage",
-// 	email: "miragekamran@gmail.com"
-// }
 
 /**
  * ### Challenge `getName`
@@ -170,16 +161,8 @@ function getCarInfoById(carArr, carId) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * sortCarInventory returns an inventory that is sorted by car_model, ascending [A-Z].
 */
-function sortCarInventory(model) {
-
-  // car.sort(function (model) {
-  //   return model.car_model
-  // });
-
-
-  var car = model.sort();
-  console.log(car);
-  // return car.car_model;
+function sortCarInventory(inventory) {
+  
 }
 
 /**
@@ -191,12 +174,9 @@ function sortCarInventory(model) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(car) {
-  const model = car.values();
-
-  for (const value of model.car_year) {
-    console.log(value);
-  }
+function getModelYears(carYear) {
+    const carYearModel = carYear.map(a => a.car_year);
+    return carYearModel;
 }
 
 /**
@@ -211,8 +191,10 @@ function getModelYears(car) {
  * with a `car_year` which is at most the given desired max year,
  * in the same order as they appear in the original inventory.
 */
-function getOlderCars(carArr, older) {
-  const myOldCar = carArr[older.car_year];
+function getOlderCars(carArr, max_year) {
+  const myOldCar = carArr.filter(a => 
+    a.car_year <= max_year
+  );
   return myOldCar;
 }
 
@@ -227,8 +209,12 @@ function getOlderCars(carArr, older) {
  * made by either `Audi` or `Mercedes-Benz` or `Volkswagen` or `BMW`,
  * in the same order as they appear in the original inventory.
 */
-function getGermanCars(/* code here */) {
-  /* code here */
+function getGermanCars(gCars) {
+  const germanCars = ["Audi", "Mercedes-Benz", "Volkswagen", "BMW"];
+  const carsMake = gCars.filter(g => 
+    germanCars.includes(g.car_make)
+  );
+  return carsMake;
 }
 
 /**
@@ -249,9 +235,15 @@ function getGermanCars(/* code here */) {
  *   return num * 2
  * }
 */
-const sum = null; // code here!
-const addFive = null; // code here!
-const argTimesTwo = null; // code here!
+const sum = (a, b) => {
+  return a + b;
+}
+const addFive = (num) => {
+  return num + 5;
+}
+const argTimesTwo = (num) => {
+  return num * 2;
+}
 
 /**
  * ### Challenge `carMaker`
@@ -266,8 +258,15 @@ const argTimesTwo = null; // code here!
  *         (1) causes the odometer in the object to be increased by the distance,
  *         (2) returns the updated value of the `odometer`.
 */
-function carMaker(/* code here */) {
-  /* code here */
+function carMaker(speed) {
+  const odoObj = {
+    odometer: speed,
+    drive: function(destance) {
+      const updatedSpeed = destance * speed;
+      return updatedSpeed;
+    }
+  }
+  return odoObj;
 }
 
 /// ////// END OF CHALLENGE /////////
